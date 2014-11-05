@@ -1,0 +1,17 @@
+# ************************************************************* Custom Links
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /
+
+# Redirect www to http
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# URLs all require trailing '/'. [QSA] means additional params (e.g. ?json=) are passed to api.php
+RewriteRule ^$                          _process.php                                    [QSA]
+# http://ashton.codes/docs/
+RewriteRule ^([^/]+)/$                  _process.php?method=$1                          [QSA]
+# http://ashton.codes/docs/social/
+RewriteRule ^([^/]+)/([^/]+)/$          _process.php?method=$1&category=$2              [QSA]
+# http://ashton.codes/docs/details/name/
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/$  _process.php?method=$1&category=$2&attribute=$3 [QSA]

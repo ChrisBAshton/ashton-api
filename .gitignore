@@ -1,0 +1,6 @@
+# can't have you lot peeking at my keys!
+.DS_Store
+api_read/api_keys.php
+api_write/twitter
+api_write/linkedin
+data/chris.json
