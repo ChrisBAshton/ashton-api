@@ -15,3 +15,9 @@ cron.php is run every 10 minutes. This grabs all my latest data (e.g. latest Twe
 * _process.php - interprets the URL and passes parameters to the appropriate template.
 * docs.php - renders the documentation
 * get.php - gets the requested attribute(s)
+
+## What isn't in this repo?
+
+* api_read/api_keys.php - contains the API keys people can use to call the API. Yes, that's just me so far.
+* api_write/linkedin/linkedin.php - contains my LinkedIn OAuth keys.
+* api_write/twitter/twitter.php - contains my Twitter OAuth keys.
