@@ -45,9 +45,9 @@ class LatestChrisData {
 
     private function getDetails() {
         $this->details['name']         = "Chris Ashton";
-        $this->details['location']     = "Aberystwyth";
-        $this->details['description']  = "Web developer | Pragmatic Programmer | Entrepreneur";
-        $this->details['availability'] = "Rather busy, but happy to consider freelance development work.";
+        $this->details['location']     = $this->getBlogPostContent("http://ashton.codes/blog/current-location/");
+        $this->details['description']  = $this->getBlogPostContent("http://ashton.codes/blog/current-description/");
+        $this->details['availability'] = $this->getBlogPostContent("http://ashton.codes/blog/current-status/");
 
         $this->details['resume']       = $this->getResume();
         $this->getBlogDetails();
@@ -66,6 +66,16 @@ class LatestChrisData {
         $resume = nl2br($resume);
         
         return $resume;
+    }
+
+    private function getBlogPostContent($url) {
+        $html = $this->get_data($url);
+        $contentBeginning = '<div id="post-content">';
+        $contentBeginning = strpos($html, $contentBeginning) + strlen($contentBeginning);
+        $contentEnd = strpos($html, '</div>', $contentBeginning);
+        $content = substr($html, $contentBeginning, $contentEnd - $contentBeginning);
+        $content = trim(strip_tags($content));
+        return $content;
     }
 
     private function getBlogDetails() {
