@@ -10,6 +10,10 @@ $categories = array(
             "description" => "My current location.",
             "returns" => "string"
         ),
+        "description" => array(
+            "description" => "How I currently describe myself.",
+            "returns" => "string"
+        ),
         "availability" => array(
             "description" => "My current work availability.",
             "returns" => "string"
@@ -26,6 +30,10 @@ $categories = array(
             "description" => "Excerpt from my latest blog.",
             "returns" => "string"
         ),
+        "blogUrl" => array(
+            "description" => "URL for my latest blog entry.",
+            "returns" => "string"
+        ),
         "picture" => array(
             "description" => "URL to my <a href='http://en.gravatar.com/' target='_blank'>Gravatar</a> profile picture.",
             "returns" => "string"
@@ -33,7 +41,7 @@ $categories = array(
     ),
     "social" => array(
         "tweet" => array(
-            "description" => "My latest Tweet.",
+            "description" => "The ID for my latest Tweet.",
             "returns" => "string"
         ),
         "twitter" => array(

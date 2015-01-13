@@ -20,10 +20,12 @@ class Chris {
             "details" => array(
                 "name"                => $this->name(),
                 "location"            => $this->location(),
+                "description"         => $this->description(),
                 "availability"        => $this->availability(),
                 "resume"              => $this->resume(),
                 "blogTitle"           => $this->blogTitle(),
                 "blogExcerpt"         => $this->blogExcerpt(),
+                "blogUrl"             => $this->blogUrl(),
                 "picture"             => $this->picture()
             ),
             "social" => array(
@@ -167,6 +169,10 @@ class Chris {
         return $this->chris['details']['location'];
     }
 
+    public function description() {
+        return $this->chris['details']['description'];
+    }
+
     public function availability() {
         return $this->chris['details']['availability'];
     }
@@ -181,6 +187,10 @@ class Chris {
 
     public function blogExcerpt() {
         return $this->chris['details']['blogExcerpt'];
+    }
+
+    public function blogUrl() {
+        return $this->chris['details']['blogUrl'];
     }
 
     public function picture() {

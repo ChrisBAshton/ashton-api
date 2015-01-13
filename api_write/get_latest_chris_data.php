@@ -85,6 +85,13 @@ class LatestChrisData {
         $descriptionEndsAt = strpos($html, $blogEnd);
         $length = $descriptionEndsAt - $descriptionBeginsAt;
         $this->details['blogExcerpt'] = trim(substr($html, $descriptionBeginsAt, $length));
+
+        $blogBeginning = "<!-- latest_blog_begin--url -->";
+        $blogEnd       = "<!-- latest_blog_end--url -->";
+        $descriptionBeginsAt = strpos($html, $blogBeginning) + strlen($blogBeginning);
+        $descriptionEndsAt = strpos($html, $blogEnd);
+        $length = $descriptionEndsAt - $descriptionBeginsAt;
+        $this->details['blogUrl'] = trim(substr($html, $descriptionBeginsAt, $length));
     }
 
     /* gets the data from a URL */
