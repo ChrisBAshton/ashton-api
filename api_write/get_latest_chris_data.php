@@ -46,6 +46,7 @@ class LatestChrisData {
     private function getDetails() {
         $this->details['name']         = "Chris Ashton";
         $this->details['location']     = "Aberystwyth";
+        $this->details['description']  = "Web developer | Pragmatic Programmer | Entrepreneur";
         $this->details['availability'] = "Rather busy, but happy to consider freelance development work.";
 
         $this->details['resume']       = $this->getResume();
@@ -68,7 +69,7 @@ class LatestChrisData {
     }
 
     private function getBlogDetails() {
-        $url = "http://chrisashton.co/blog/";
+        $url = "http://ashton.codes/blog/category/updates/";
         $html = $this->get_data($url);
 
         $blogBeginning = "<!-- latest_blog_begin--title -->";
