@@ -74,7 +74,7 @@ class LatestChrisData {
         $contentBeginning = strpos($html, $contentBeginning) + strlen($contentBeginning);
         $contentEnd = strpos($html, '</div>', $contentBeginning);
         $content = substr($html, $contentBeginning, $contentEnd - $contentBeginning);
-        $content = trim(strip_tags($content));
+        $content = trim(strip_tags($content, '<a>'));
         return $content;
     }
 
