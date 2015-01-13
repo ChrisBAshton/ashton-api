@@ -65,6 +65,10 @@ $categories = array(
         "daysuntilgraduation" => array(
             "description" => "Number of days until I graduate. One day this will be a negative figure and my API will crash and burn.",
             "returns" => "int"
+        ),
+        "apiLastUpdated" => array(
+            "description" => "Returns the Unix timestamp for when the API was last updated.",
+            "returns" => "int"
         )
     )
 );

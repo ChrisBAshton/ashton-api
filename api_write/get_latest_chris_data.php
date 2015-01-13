@@ -119,6 +119,7 @@ class LatestChrisData {
     private function getMiscellaneous() {
         $this->miscellaneous['codingDays']          = $this->getCodingDays();
         $this->miscellaneous['daysUntilGraduation'] = $this->getDaysUntilGraduation();
+        $this->miscellaneous['apiLastUpdated']      = time();
     }
 
     private function getCodingDays() {

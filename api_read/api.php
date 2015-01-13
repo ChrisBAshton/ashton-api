@@ -36,7 +36,8 @@ class Chris {
             ),
             "miscellaneous" => array(
                 "codingDays"          => $this->codingDays(),
-                "daysUntilGraduation" => $this->daysUntilGraduation()
+                "daysUntilGraduation" => $this->daysUntilGraduation(),
+                "apiLastUpdated"      => $this->apiLastUpdated()
             )
         );
 
@@ -223,5 +224,9 @@ class Chris {
 
     public function daysUntilGraduation() {
         return $this->chris['miscellaneous']['daysUntilGraduation'];
+    }
+
+    public function apiLastUpdated() {
+        return $this->chris['miscellaneous']['apiLastUpdated'];
     }
 }
