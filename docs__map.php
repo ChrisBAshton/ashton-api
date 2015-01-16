@@ -58,11 +58,11 @@ $categories = array(
         )
     ),
     "miscellaneous" => array(
-        "codingdays" => array(
+        "codingDays" => array(
             "description" => "Number of days (approx.) since I began coding. I remember using HTML and PHP to make websites back in January 2009, so this figure is based loosely on that date. That said, I've played around with HTML and CSS since about 2005.",
             "returns" => "int"
         ),
-        "daysuntilgraduation" => array(
+        "daysUntilGraduation" => array(
             "description" => "Number of days until I graduate. One day this will be a negative figure and my API will crash and burn.",
             "returns" => "int"
         ),
