@@ -21,7 +21,7 @@
 <p>
     Return values can be encoded as json (default), xml, or csv - simply append the required datatype to the end of the URL, e.g.
 
-    <code>http://api.ashton.codes/get/miscellaneous/codingdays/?key=YOUR_API_KEY&amp;type=xml</code>
+    <code>http://api.ashton.codes/get/miscellaneous/codingDays/?key=YOUR_API_KEY&amp;type=xml</code>
 </p>
 
 <h2>Up-to-dateness</h2>
