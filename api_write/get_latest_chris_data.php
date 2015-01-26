@@ -55,16 +55,13 @@ class LatestChrisData {
     }
 
     private function getResume() {
-
         $pattern = "/<summary>([\s\S]*)<\/summary>/msU";
-
         $linkedin = new LinkedIn();
 
         preg_match($pattern, $linkedin->summary, $matches);
         $resume = $matches[1];
-
-        $resume = nl2br($resume);
         
+        $resume = nl2br($resume);
         return $resume;
     }
 
@@ -79,32 +76,37 @@ class LatestChrisData {
     }
 
     private function getBlogDetails() {
-        $url = "http://ashton.codes/blog/category/updates/";
-        $html = $this->get_data($url);
+        $url = "http://ashton.codes/blog/api/get_posts/";
+        $contents = $this->get_data($url);
+        $feed = json_decode($contents);
+        $feed = $feed->posts;
 
-        $blogBeginning = "<!-- latest_blog_begin--title -->";
-        $blogEnd       = "<!-- latest_blog_end--title -->";
-        $descriptionBeginsAt = strpos($html, $blogBeginning) + strlen($blogBeginning);
-        $descriptionEndsAt = strpos($html, $blogEnd);
-        $length = $descriptionEndsAt - $descriptionBeginsAt;
-        $this->details['blogTitle'] = trim(substr($html, $descriptionBeginsAt, $length));
+        /* 
+         * Function to turn a mysql datetime (YYYY-MM-DD HH:MM:SS) into a unix timestamp 
+         *
+         * Taken from http://www.webdeveloper.com/forum/showthread.php?62042-convert-mysql-DATETIME-to-timestamp&p=348107#post348107
+         * @param str The string to be formatted 
+         */ 
+        function convert_datetime($str) { 
+            list($date, $time) = explode(' ', $str); 
+            list($year, $month, $day) = explode('-', $date); 
+            list($hour, $minute, $second) = explode(':', $time); 
+             
+            $timestamp = mktime($hour, $minute, $second, $month, $day, $year); 
+            return $timestamp; 
+        }
 
-        $blogBeginning = "<!-- latest_blog_begin--excerpt -->";
-        $blogEnd       = "<!-- latest_blog_end--excerpt -->";
-        $descriptionBeginsAt = strpos($html, $blogBeginning) + strlen($blogBeginning);
-        $descriptionEndsAt = strpos($html, $blogEnd);
-        $length = $descriptionEndsAt - $descriptionBeginsAt;
-        $this->details['blogExcerpt'] = trim(substr($html, $descriptionBeginsAt, $length));
+        foreach($feed as $post) {
+            if (!isset($latest) || convert_datetime($post->date) > convert_datetime($latest->date)) {
+                $latest = $post;
+            }
+        }
 
-        $blogBeginning = "<!-- latest_blog_begin--url -->";
-        $blogEnd       = "<!-- latest_blog_end--url -->";
-        $descriptionBeginsAt = strpos($html, $blogBeginning) + strlen($blogBeginning);
-        $descriptionEndsAt = strpos($html, $blogEnd);
-        $length = $descriptionEndsAt - $descriptionBeginsAt;
-        $this->details['blogUrl'] = trim(substr($html, $descriptionBeginsAt, $length));
+        $this->details['blogTitle'] = $latest->title;
+        $this->details['blogExcerpt'] = $latest->excerpt;
+        $this->details['blogUrl'] = $latest->url;
     }
 
-    /* gets the data from a URL */
     private function get_data($url) {
         $ch = curl_init();
         $timeout = 5;
