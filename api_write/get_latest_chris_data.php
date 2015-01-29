@@ -67,7 +67,7 @@ class LatestChrisData {
 
     private function getBlogPostContent($url) {
         $html = $this->get_data($url);
-        $contentBeginning = '<div id="post-content">';
+        $contentBeginning = '<div id="post-content" class="entry-content">';
         $contentBeginning = strpos($html, $contentBeginning) + strlen($contentBeginning);
         $contentEnd = strpos($html, '</div>', $contentBeginning);
         $content = substr($html, $contentBeginning, $contentEnd - $contentBeginning);
