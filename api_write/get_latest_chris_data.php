@@ -60,7 +60,7 @@ class LatestChrisData {
 
         preg_match($pattern, $linkedin->summary, $matches);
         $resume = $matches[1];
-        
+
         $resume = nl2br($resume);
         return $resume;
     }
@@ -81,19 +81,19 @@ class LatestChrisData {
         $feed = json_decode($contents);
         $feed = $feed->posts;
 
-        /* 
-         * Function to turn a mysql datetime (YYYY-MM-DD HH:MM:SS) into a unix timestamp 
+        /*
+         * Function to turn a mysql datetime (YYYY-MM-DD HH:MM:SS) into a unix timestamp
          *
          * Taken from http://www.webdeveloper.com/forum/showthread.php?62042-convert-mysql-DATETIME-to-timestamp&p=348107#post348107
-         * @param str The string to be formatted 
-         */ 
-        function convert_datetime($str) { 
-            list($date, $time) = explode(' ', $str); 
-            list($year, $month, $day) = explode('-', $date); 
-            list($hour, $minute, $second) = explode(':', $time); 
-             
-            $timestamp = mktime($hour, $minute, $second, $month, $day, $year); 
-            return $timestamp; 
+         * @param str The string to be formatted
+         */
+        function convert_datetime($str) {
+            list($date, $time) = explode(' ', $str);
+            list($year, $month, $day) = explode('-', $date);
+            list($hour, $minute, $second) = explode(':', $time);
+
+            $timestamp = mktime($hour, $minute, $second, $month, $day, $year);
+            return $timestamp;
         }
 
         foreach($feed as $post) {
@@ -133,7 +133,7 @@ class LatestChrisData {
     }
 
     private function getDaysUntilGraduation() {
-        $graduate = strtotime("07/15/2015"); // stupid American date system
+        $graduate = strtotime("07/14/2015"); // stupid American date system
         $today = time();
         $secondsToWait = $graduate - $today;
         $daysToWait = $secondsToWait / 60 / 60 / 24;
