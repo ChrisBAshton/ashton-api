@@ -45,9 +45,9 @@ class LatestChrisData {
 
     private function getDetails() {
         $this->details['name']         = "Chris Ashton";
-        $this->details['location']     = $this->getBlogPostContent("http://ashton.codes/blog/current-location/");
-        $this->details['description']  = $this->getBlogPostContent("http://ashton.codes/blog/current-description/");
-        $this->details['availability'] = $this->getBlogPostContent("http://ashton.codes/blog/current-status/");
+        $this->details['location']     = $this->getBlogPostContent("http://ashton.codes/current-location/");
+        $this->details['description']  = $this->getBlogPostContent("http://ashton.codes/current-description/");
+        $this->details['availability'] = $this->getBlogPostContent("http://ashton.codes/current-status/");
 
         $this->details['resume']       = $this->getResume();
         $this->getBlogDetails();
@@ -76,7 +76,7 @@ class LatestChrisData {
     }
 
     private function getBlogDetails() {
-        $url = "http://ashton.codes/blog/api/get_posts/";
+        $url = "http://ashton.codes/api/get_posts/";
         $contents = $this->get_data($url);
         $feed = json_decode($contents);
         $feed = $feed->posts;
