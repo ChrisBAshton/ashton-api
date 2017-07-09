@@ -3,4 +3,5 @@
 api_read/api_keys.php
 api_write/twitter
 api_write/linkedin
+api_write/instagram
 data/chris.json

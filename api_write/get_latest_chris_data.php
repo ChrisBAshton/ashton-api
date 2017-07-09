@@ -38,9 +38,19 @@ class LatestChrisData {
     private function getSocial() {
         $twitter = new Twitter();
         $this->social['tweet']    = $twitter->tweet;
-        $this->social['twitter']  = "http://twitter.com/ChrisBAshton";
+        $this->social['twitter']  = "https://twitter.com/ChrisBAshton";
         $this->social['linkedin'] = "https://www.linkedin.com/in/chrisbashton";
-        $this->social['github']   = "http://github.com/ChrisBAshton";
+        $this->social['github']   = "https://github.com/ChrisBAshton";
+        $this->social['instagram']= "https://instagram.com/ChrisBAshton";
+        $this->social['instagramPost']= $this->getInstagramLink();
+    }
+
+    private function getInstagramLink() {
+        // access token generated using client-side (implicit) auth: https://www.instagram.com/developer/authentication/
+        $authenticatedUrl = 'https://api.instagram.com/v1/users/552326513/media/recent/?access_token=' . trim(file_get_contents(__DIR__ . '/instagram/access_token.txt'));
+        $contents = $this->get_data($authenticatedUrl);
+        $feed = json_decode($contents);
+        return $feed->data[0]->link;
     }
 
     private function getDetails() {

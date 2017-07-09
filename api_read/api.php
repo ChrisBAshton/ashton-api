@@ -32,7 +32,9 @@ class Chris {
                 "tweet"               => $this->tweet(),
                 "twitter"             => $this->twitter(),
                 "linkedin"            => $this->linkedin(),
-                "github"              => $this->github()
+                "github"              => $this->github(),
+                "instagram"           => $this->instagram(),
+                "instagramPost"       => $this->instagramPost(),
             ),
             "miscellaneous" => array(
                 "codingDays"          => $this->codingDays(),
@@ -87,7 +89,6 @@ class Chris {
         $output = str_replace('"', '\"', $output);
         return $output;
     }
-    
 
     private function jsonify($attributes) {
         $json = "{";
@@ -121,11 +122,11 @@ class Chris {
             }
         }
 
-        return $packaged; 
+        return $packaged;
     }
 
     private function xmlify($attributes) {
-        
+
         header('Content-type: application/xml');
 
         $xml = '<?xml version="1.0"?><chris>';
@@ -214,6 +215,14 @@ class Chris {
 
     public function github() {
         return $this->chris['social']['github'];
+    }
+
+    public function instagram() {
+        return $this->chris['social']['instagram'];
+    }
+
+    public function instagramPost() {
+        return $this->chris['social']['instagramPost'];
     }
 
     /* MISCELLANEOUS */
