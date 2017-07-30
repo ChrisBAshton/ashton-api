@@ -7,6 +7,9 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
+# OEmbed
+RewriteRule ^oembed$                    _oembed.php                                     [QSA]
+
 # URLs all require trailing '/'. [QSA] means additional params (e.g. ?json=) are passed to api.php
 RewriteRule ^$                          _process.php                                    [QSA]
 # http://ashton.codes/docs/

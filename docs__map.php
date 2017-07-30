@@ -1,5 +1,6 @@
 <?php
 
+// @TODO yaml
 $categories = array(
     "details" => array(
         "name" => array(
