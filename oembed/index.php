@@ -13,7 +13,7 @@ if ($_GET['url']) {
     if ($url === 'http://api.ashton.codes/card/github') {
         echo file_get_contents(__DIR__ . '/templates/github.php');
     }
-    if ($url === 'http://api.ashton.codes/card/instagram') {
+    else if ($url === 'http://api.ashton.codes/card/instagram') {
         $template = $twig->load('instagram.html');
         $instagramPostUrl = json_decode(file_get_contents('http://api.ashton.codes/get/social/instagramPost/?key=' . $key . '&format=json'))->instagramPost;
         echo $template->render(array(
