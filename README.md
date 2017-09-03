@@ -1,23 +1,43 @@
 # Ashton API
 
-Welcome to my API, official website at http://api.ashton.codes/. There are 3 main sections:
+Welcome to my API, official website at http://api.ashton.codes/. The API drives much of https://ashton.codes, through its two features: REST API and OEmbed.
 
-## api_read
+## RESTful API
 
-Handles taking a key and checking user is authorised, before grabbing the cached JSON file and returning the requested category/attribute.
+The API follows this pattern:
 
-## api_write
+`http://api.ashton.codes/[METHOD]/[CATEGORY]/[ATTRIBUTE]/`
 
-cron.php is run every 10 minutes. This grabs all my latest data (e.g. latest Tweet, LinkedIn Summary, etc) and stores the data as a JSON file under data/chris.json, which is gitignored because the version on Git would be constantly out of date.
+* Method can be `docs` (to view API docs) or `get` to actually call the API
+* Category is currently either `details`, `social` or `miscellaneous`
+* Attribute is a specific unit of data under the category, e.g. `details => blogUrl`
 
-## Top level files
+Example:
 
-* _process.php - interprets the URL and passes parameters to the appropriate template.
-* docs.php - renders the documentation
-* get.php - gets the requested attribute(s)
+http://api.ashton.codes/docs/details/description/
 
-## What isn't in this repo?
+This is the documentation page for the `description` attribute.
 
-* api_read/api_keys.php - contains the API keys people can use to call the API. Yes, that's just me so far.
-* api_write/linkedin/linkedin.php - contains my LinkedIn OAuth keys.
-* api_write/twitter/twitter.php - contains my Twitter OAuth keys.
+http://api.ashton.codes/get/details/description/?key=[YOUR_KEY]&format=[FORMAT - optional]
+
+This is calling the API. You can request an API key via [GitHub Issues](https://github.com/ChrisBAshton/ashton-api/issues).
+
+You can specify a format for your data: currently JSON (default), XML or CSV.
+
+## OEmbed
+
+In progress. Provides iframed content you can include on your website.
+
+http://api.ashton.codes/oembed/?url=http://api.ashton.codes/card/instagram
+
+## Directory structure
+
+The `api` directory contains the business logic for updating the cached version of the data (called via a cron job every 10 minutes) and the authentication logic for being read from.
+
+`config` describes the REST categories & attributes so that I can follow the DRY principle, and also specifies the (publicly inaccessible) location of the cached API contents.
+
+`docs` contains the HTML which renders the API docs. Also contains `get.php` which is called when the API is called. I should probably move this somewhere better.
+
+`oembed` contains the OEmbed logic and templates.
+
+`private` is git-ignored and should be uploaded to the private location on the server as specified in `config/paths.yml`. It contains the Ashton API keys as well as keys & tokens used by the underlying Ashton API for third-party services such as Twitter.

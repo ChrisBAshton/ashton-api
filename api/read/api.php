@@ -150,7 +150,8 @@ class Chris {
     }
 
     private function fetchJSON() {
-        $dataJsonFile = __DIR__ . '/../data/chris.json';
+        $keys = new ApiKeys();
+        $dataJsonFile = $keys->pathToPrivateDirectory() . '/chris.json';
         if (!file_exists($dataJsonFile)) {
             die('No such file: ' . $dataJsonFile);
         } else {
