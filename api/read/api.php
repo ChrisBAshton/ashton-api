@@ -150,8 +150,8 @@ class Chris {
     }
 
     private function fetchJSON() {
-        $path_to_data_file = __DIR__ . yaml_parse(file_get_contents(__DIR__ . '/../../config/paths.yml'))['path_to_private_dir'];
-        $dataJsonFile = $path_to_data_file . '/chris.json';
+        $keys = new ApiKeys();
+        $dataJsonFile = $keys->pathToPrivateDirectory() . '/chris.json';
         if (!file_exists($dataJsonFile)) {
             die('No such file: ' . $dataJsonFile);
         } else {

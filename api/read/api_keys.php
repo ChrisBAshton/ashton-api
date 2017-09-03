@@ -19,6 +19,10 @@ class ApiKeys {
         return $authorised;
     }
 
+    public function pathToPrivateDirectory() {
+        return $this->path_to_private_dir;
+    }
+
     public function getMyPersonalAshtonApiKey() {
         return $this->getAshtonApiKeys()['chris.ashton@webdapper.com'];
     }
