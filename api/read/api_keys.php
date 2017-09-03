@@ -20,7 +20,7 @@ class ApiKeys {
     }
 
     public function getMyPersonalAshtonApiKey() {
-        return $this->getAshtonApiKeys()['chrisashtonweb@gmail.com'];
+        return $this->getAshtonApiKeys()['chris.ashton@webdapper.com'];
     }
 
     public function getAshtonApiKeys() {
