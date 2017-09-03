@@ -11,7 +11,8 @@ $twig = new Twig_Environment($loader);
 if ($_GET['url']) {
     $url = $_GET['url'];
     if ($url === 'http://api.ashton.codes/card/github') {
-        echo file_get_contents(__DIR__ . '/templates/github.php');
+        $template = $twig->load('github.html');
+        echo $template->render();
     }
     else if ($url === 'http://api.ashton.codes/card/instagram') {
         $template = $twig->load('instagram.html');
