@@ -1,0 +1,53 @@
+details:
+    name:
+        description: "My name."
+        returns: "string"
+    location:
+        description: "My current location."
+        returns: "string"
+    description:
+        description: "How I currently describe myself."
+        returns: "string"
+    availability:
+        description: "My current work availability."
+        returns: "string"
+    resume:
+        description: "My resume, pulled in directly from the 'Summary' section of my LinkedIn profile."
+        returns: "string"
+    blogTitle:
+        description: "Title of my latest blog."
+        returns: "string"
+    blogExcerpt:
+        description: "Excerpt from my latest blog."
+        returns: "string"
+    blogUrl:
+        description: "URL for my latest blog entry."
+        returns: "string"
+    picture:
+        description: URL to my <a href='http://en.gravatar.com/' target='_blank'>Gravatar</a> profile picture.
+        returns: "string"
+
+social:
+    tweet:
+        description: "The ID for my latest Tweet."
+        returns: "string"
+    twitter:
+        description: "URL to my Twitter profile."
+        returns: "string"
+    linkedin:
+        description: "URL to my LinkedIn profile."
+        returns: "string"
+    github:
+        description: "URL to my GitHub profile."
+        returns: "string"
+
+miscellaneous:
+    codingDays:
+        description: "Number of days (approx.) since I began coding. I remember using HTML and PHP to make websites back in January 2009, so this figure is based loosely on that date. That said, I've played around with HTML and CSS since about 2005."
+        returns: "int"
+    daysUntilGraduation:
+        description: "Number of days until I graduate. One day this will be a negative figure and my API will crash and burn."
+        returns: "int"
+    apiLastUpdated:
+        description: "Returns the Unix timestamp for when the API was last updated."
+        returns: "int"

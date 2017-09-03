@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1); 
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // these variables are globally accessible from within index.php/docs.php/get.php
@@ -9,10 +9,7 @@ $attribute = getUrlParam('attribute');
 $type      = getUrlParam('type');
 $key       = getUrlParam('key');
 
-if (!$method) {
-    require 'index.php';
-}
-elseif($method === 'docs') {
+if($method === 'docs') {
     require 'docs.php';
 }
 elseif($method === 'get') {

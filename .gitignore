@@ -1,7 +1,7 @@
-# can't have you lot peeking at my keys!
 .DS_Store
-api_read/api_keys.php
-api_write/twitter
-api_write/linkedin
-api_write/instagram
-data/chris.json
+
+# can't have you lot peeking at my keys!
+private/
+
+# get this by running `composer install`
+vendor/

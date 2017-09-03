@@ -3,8 +3,9 @@
 // this should run every 10 mins to create a json file with the info, as
 // we don't want to have to query linkedin and twitter every time we load the site.
 
-require_once('twitter/twitter.php');
-require_once('linkedin/linkedin.php');
+require_once(__DIR__ . '/../twitter/twitter.php');
+require_once(__DIR__ . '/../linkedin/linkedin.php');
+require_once(__DIR__ . '/../../read/api_keys.php');
 
 date_default_timezone_set('Europe/London');
 
@@ -30,13 +31,15 @@ class LatestChrisData {
         // daysUntilGraduation
 
     function __construct() {
+        $this->keys = new ApiKeys();
         $this->getSocial();
         $this->getDetails();
         $this->getMiscellaneous();
     }
 
     private function getSocial() {
-        $twitter = new Twitter();
+        $twitterKeys = $this->keys->getTwitterKeys();
+        $twitter = new Twitter($twitterKeys['consumer_key'], $twitterKeys['consumer_secret'], $twitterKeys['oauth_access_token'], $twitterKeys['oauth_access_token_secret']);
         $this->social['tweet']    = $twitter->tweet;
         $this->social['twitter']  = "https://twitter.com/ChrisBAshton";
         $this->social['linkedin'] = "https://www.linkedin.com/in/chrisbashton";
@@ -47,7 +50,7 @@ class LatestChrisData {
 
     private function getInstagramLink() {
         // access token generated using client-side (implicit) auth: https://www.instagram.com/developer/authentication/
-        $authenticatedUrl = 'https://api.instagram.com/v1/users/552326513/media/recent/?access_token=' . trim(file_get_contents(__DIR__ . '/instagram/access_token.txt'));
+        $authenticatedUrl = 'https://api.instagram.com/v1/users/552326513/media/recent/?access_token=' . $this->keys->getInstagramToken();
         $contents = $this->get_data($authenticatedUrl);
         $feed = json_decode($contents);
         return $feed->data[0]->link;
@@ -66,7 +69,8 @@ class LatestChrisData {
 
     private function getResume() {
         $pattern = "/<summary>([\s\S]*)<\/summary>/msU";
-        $linkedin = new LinkedIn();
+        $linkedInKeys = $this->keys->getLinkedInKeys();
+        $linkedin = new LinkedIn($linkedInKeys['consumer_key'], $linkedInKeys['consumer_secret'], $linkedInKeys['oauth_access_token'], $linkedInKeys['oauth_access_token_secret']);
 
         preg_match($pattern, $linkedin->summary, $matches);
         $resume = $matches[1];
