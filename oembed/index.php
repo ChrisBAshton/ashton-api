@@ -17,7 +17,7 @@ if ($_GET['url']) {
         $template = $twig->load('instagram.html');
         $instagramPostUrl = json_decode(file_get_contents('http://api.ashton.codes/get/social/instagramPost/?key=' . $key . '&format=json'))->instagramPost;
         echo $template->render(array(
-            'instagramPost' => $instagramPostUrl
+            'instagramPost' => $instagramPostUrl . 'embed'
         ));
     }
     else {
