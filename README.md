@@ -8,9 +8,9 @@ The API follows this pattern:
 
 `http://api.ashton.codes/[METHOD]/[CATEGORY]/[ATTRIBUTE]/`
 
-* Method can be `docs` (to view API docs) or `get` to actually call the API
-* Category is currently either `details`, `social` or `miscellaneous`
-* Attribute is a specific unit of data under the category, e.g. `details => blogUrl`
+- Method can be `docs` (to view API docs) or `get` to actually call the API
+- Category is currently either `details`, `social` or `miscellaneous`
+- Attribute is a specific unit of data under the category, e.g. `details => blogUrl`
 
 Example:
 
@@ -28,7 +28,10 @@ You can specify a format for your data: currently JSON (default), XML or CSV.
 
 In progress. Provides iframed content you can include on your website.
 
-http://api.ashton.codes/oembed/?url=http://api.ashton.codes/card/instagram
+https://api.ashton.codes/oembed/?url=https://api.ashton.codes/card/instagram
+
+If this stops working, you may need to update your auth token as per
+https://www.instagram.com/developer/authentication/
 
 ## Directory structure
 

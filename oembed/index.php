@@ -10,13 +10,13 @@ $twig = new Twig_Environment($loader);
 
 if ($_GET['url']) {
     $url = $_GET['url'];
-    if ($url === 'http://api.ashton.codes/card/github') {
+    if ($url === 'https://api.ashton.codes/card/github') {
         $template = $twig->load('github.html');
         echo $template->render();
     }
-    else if ($url === 'http://api.ashton.codes/card/instagram') {
+    else if ($url === 'https://api.ashton.codes/card/instagram') {
         $template = $twig->load('instagram.html');
-        $instagramPostUrl = json_decode(file_get_contents('http://api.ashton.codes/get/social/instagramPost/?key=' . $key . '&format=json'))->instagramPost;
+        $instagramPostUrl = json_decode(file_get_contents('https://api.ashton.codes/get/social/instagramPost/?key=' . $key . '&format=json'))->instagramPost;
         echo $template->render(array(
             'instagramPost' => $instagramPostUrl . 'embed'
         ));
@@ -26,5 +26,5 @@ if ($_GET['url']) {
     }
 }
 else {
-    echo "Please provide a URL parameter, e.g. http://api.ashton.codes/card/github";
+    echo "Please provide a URL parameter, e.g. https://api.ashton.codes/card/github";
 }
