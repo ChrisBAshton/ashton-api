@@ -2,18 +2,14 @@ Options +FollowSymLinks
 RewriteEngine on
 RewriteBase /
 
-# Redirect www to http
-RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
-
 # URLs all require trailing '/'.
 # [QSA] means additional params (e.g. ?json=) are also passed
 
-# http://api.ashton.codes/docs/
+# https://api.ashton.codes/docs/
 RewriteRule ^(docs|get)/$                   /docs/index.php?method=$1                          [QSA]
 
-# http://api.ashton.codes/docs/social/
+# https://api.ashton.codes/docs/social/
 RewriteRule ^(docs|get)\/([^/]+)/$          /docs/index.php?method=$1&category=$2              [QSA]
 
-# http://api.ashton.codes/docs/details/name/
+# https://api.ashton.codes/docs/details/name/
 RewriteRule ^(docs|get)\/([^/]+)/([^/]+)/$  /docs/index.php?method=$1&category=$2&attribute=$3 [QSA]
