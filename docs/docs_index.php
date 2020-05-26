@@ -3,17 +3,17 @@
 <h2>Get started</h2>
 
 <p>
-    To get started, you'll need to <a href="http://ashton.codes/contact/">request an API key</a>. An API key will be generated for you and emailed to you within a week, provided I'm not on holiday!
+    To get started, you'll need to <a href="https://ashton.codes/contact/">request an API key</a>. An API key will be generated for you and emailed to you within a week, provided I'm not on holiday!
 </p>
 
 <p>
     This documentation mirrors the API calls exactly. For example, clicking on 'details' will take you to:
 
-    <code>http://api.ashton.codes/docs/details/</code>
+    <code>https://api.ashton.codes/docs/details/</code>
 
     To actually get 'details', simply replace 'docs' with 'get', and append your API key:
 
-    <code>http://api.ashton.codes/get/details/?key=YOUR_API_KEY</code>
+    <code>https://api.ashton.codes/get/details/?key=YOUR_API_KEY</code>
 </p>
 
 <h2>Data formats</h2>
@@ -21,7 +21,7 @@
 <p>
     Return values can be encoded as json (default), xml, or csv - simply append the required datatype to the end of the URL, e.g.
 
-    <code>http://api.ashton.codes/get/miscellaneous/codingDays/?key=YOUR_API_KEY&amp;type=xml</code>
+    <code>https://api.ashton.codes/get/miscellaneous/codingDays/?key=YOUR_API_KEY&amp;type=xml</code>
 </p>
 
 <h2>Up-to-dateness</h2>

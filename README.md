@@ -1,12 +1,12 @@
 # Ashton API
 
-Welcome to my API, official website at http://api.ashton.codes/. The API drives much of https://ashton.codes, through its two features: REST API and OEmbed.
+Welcome to my API, official website at https://api.ashton.codes/. The API drives much of https://ashton.codes, through its two features: REST API and OEmbed.
 
 ## RESTful API
 
 The API follows this pattern:
 
-`http://api.ashton.codes/[METHOD]/[CATEGORY]/[ATTRIBUTE]/`
+`https://api.ashton.codes/[METHOD]/[CATEGORY]/[ATTRIBUTE]/`
 
 - Method can be `docs` (to view API docs) or `get` to actually call the API
 - Category is currently either `details`, `social` or `miscellaneous`
@@ -14,11 +14,11 @@ The API follows this pattern:
 
 Example:
 
-http://api.ashton.codes/docs/details/description/
+https://api.ashton.codes/docs/details/description/
 
 This is the documentation page for the `description` attribute.
 
-http://api.ashton.codes/get/details/description/?key=[YOUR_KEY]&format=[FORMAT - optional]
+https://api.ashton.codes/get/details/description/?key=[YOUR_KEY]&format=[FORMAT - optional]
 
 This is calling the API. You can request an API key via [GitHub Issues](https://github.com/ChrisBAshton/ashton-api/issues).
 

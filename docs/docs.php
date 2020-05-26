@@ -64,7 +64,7 @@ function documentation_breadcrumb($category, $attribute) {
 
 function api_call($category, $attribute) {
 
-    $api = 'http://api.ashton.codes/get';
+    $api = 'https://api.ashton.codes/get';
 
     if (!$category) {
        return false;
