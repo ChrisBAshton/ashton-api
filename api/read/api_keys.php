@@ -31,6 +31,12 @@ class ApiKeys {
         return yaml_parse(file_get_contents($this->path_to_private_dir . '/ashton-api.yml'));
     }
 
+    public function getAshtonRestAuthCreds() {
+        $yaml = yaml_parse(file_get_contents($this->path_to_private_dir . '/application-passwords.yml'));
+        // array(1) { ["Username"] => "Password" }
+        return array_key_first($yaml) . ":" . $yaml[array_key_first($yaml)];
+    }
+
     public function getTwitterKeys() {
         return yaml_parse(file_get_contents($this->path_to_private_dir . '/twitter.yml'));
     }

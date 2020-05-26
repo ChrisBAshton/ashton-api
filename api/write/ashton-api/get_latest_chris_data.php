@@ -67,12 +67,10 @@ class LatestChrisData {
     }
 
     private function getResume() {
-        return "Experienced Developer working for the Government Digital Service. Previous: BBC News. I am a highly efficient, organised and creative individual, founder of my own digital agency and tenor in the BBC Symphony Chorus.";
-        // @TODO - this url 403s
-        // $url = "https://ashton.codes/wp-json/wp/v2/users/1";
-        // $contents = $this->get_data($url);
-        // $feed = json_decode($contents);
-        // return $feed->description;
+        $url = "https://ashton.codes/wp-json/wp/v2/users/1";
+        $contents = $this->get_data($url, TRUE);
+        $feed = json_decode($contents);
+        return $feed->description;
     }
 
     private function getBlogPostContent($url) {
@@ -98,12 +96,15 @@ class LatestChrisData {
         $this->details['blogUrl'] = $latest["link"];
     }
 
-    private function get_data($url) {
+    private function get_data($url, $auth = FALSE) {
         $ch = curl_init();
         $timeout = 5;
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        if ($auth) {
+            curl_setopt($ch, CURLOPT_USERPWD, $this->keys->getAshtonRestAuthCreds());
+        }
         $data = curl_exec($ch);
         curl_close($ch);
         return $data;
