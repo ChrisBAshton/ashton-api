@@ -4,7 +4,6 @@
 // we don't want to have to query linkedin and twitter every time we load the site.
 
 require_once(__DIR__ . '/../twitter/twitter.php');
-require_once(__DIR__ . '/../linkedin/linkedin.php');
 require_once(__DIR__ . '/../../read/api_keys.php');
 
 date_default_timezone_set('Europe/London');
@@ -68,15 +67,12 @@ class LatestChrisData {
     }
 
     private function getResume() {
-        $pattern = "/<summary>([\s\S]*)<\/summary>/msU";
-        $linkedInKeys = $this->keys->getLinkedInKeys();
-        $linkedin = new LinkedIn($linkedInKeys['consumer_key'], $linkedInKeys['consumer_secret'], $linkedInKeys['oauth_access_token'], $linkedInKeys['oauth_access_token_secret']);
-
-        preg_match($pattern, $linkedin->summary, $matches);
-        $resume = $matches[1];
-
-        $resume = nl2br($resume);
-        return $resume;
+        return "Experienced Developer working for the Government Digital Service. Previous: BBC News. I am a highly efficient, organised and creative individual, founder of my own digital agency and tenor in the BBC Symphony Chorus.";
+        // @TODO - this url 403s
+        // $url = "https://ashton.codes/wp-json/wp/v2/users/1";
+        // $contents = $this->get_data($url);
+        // $feed = json_decode($contents);
+        // return $feed->description;
     }
 
     private function getBlogPostContent($url) {

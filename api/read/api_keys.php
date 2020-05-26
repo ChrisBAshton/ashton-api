@@ -31,10 +31,6 @@ class ApiKeys {
         return yaml_parse(file_get_contents($this->path_to_private_dir . '/ashton-api.yml'));
     }
 
-    public function getLinkedInKeys() {
-        return yaml_parse(file_get_contents($this->path_to_private_dir . '/linkedin.yml'));
-    }
-
     public function getTwitterKeys() {
         return yaml_parse(file_get_contents($this->path_to_private_dir . '/twitter.yml'));
     }

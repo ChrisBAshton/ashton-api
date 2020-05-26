@@ -12,7 +12,7 @@ require 'header.php';
         It shows I can write an API.
     </li>
     <li>
-        The API is genuinely useful for keeping my website up-to-date. An update to my LinkedIn or Twitter profile is automatically reflected here without having to perform the update in multiple locations.
+        The API is genuinely useful for keeping my website up-to-date. An update to my Instagram or Twitter profile is automatically reflected here without having to perform the update in multiple locations.
     </li>
     <li>
         I now have a good codebase that I can copy across for future APIs, should the need arise. Interested in seeing the code? <a href="https://github.com/ChrisBAshton/ashton-api">It's on Github.</a>
