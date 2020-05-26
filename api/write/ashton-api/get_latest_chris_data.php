@@ -57,9 +57,9 @@ class LatestChrisData {
 
     private function getDetails() {
         $this->details['name']         = "Chris Ashton";
-        $this->details['location']     = $this->getBlogPostContent("http://ashton.codes/current-location/");
-        $this->details['description']  = $this->getBlogPostContent("http://ashton.codes/current-description/");
-        $this->details['availability'] = $this->getBlogPostContent("http://ashton.codes/current-status/");
+        $this->details['location']     = $this->getBlogPostContent("https://ashton.codes/current-location/");
+        $this->details['description']  = $this->getBlogPostContent("https://ashton.codes/current-description/");
+        $this->details['availability'] = $this->getBlogPostContent("https://ashton.codes/current-status/");
 
         $this->details['resume']       = $this->getResume();
         $this->getBlogDetails();
@@ -86,35 +86,16 @@ class LatestChrisData {
     }
 
     private function getBlogDetails() {
-        $url = "http://ashton.codes/api/get_posts/";
+        $url = "https://ashton.codes/feed/";
         $contents = $this->get_data($url);
-        $feed = json_decode($contents);
-        $feed = $feed->posts;
-
-        /*
-         * Function to turn a mysql datetime (YYYY-MM-DD HH:MM:SS) into a unix timestamp
-         *
-         * Taken from http://www.webdeveloper.com/forum/showthread.php?62042-convert-mysql-DATETIME-to-timestamp&p=348107#post348107
-         * @param str The string to be formatted
-         */
-        function convert_datetime($str) {
-            list($date, $time) = explode(' ', $str);
-            list($year, $month, $day) = explode('-', $date);
-            list($hour, $minute, $second) = explode(':', $time);
-
-            $timestamp = mktime($hour, $minute, $second, $month, $day, $year);
-            return $timestamp;
-        }
-
-        foreach($feed as $post) {
-            if (!isset($latest) || convert_datetime($post->date) > convert_datetime($latest->date)) {
-                $latest = $post;
-            }
-        }
-
-        $this->details['blogTitle'] = $latest->title;
-        $this->details['blogExcerpt'] = $latest->excerpt;
-        $this->details['blogUrl'] = $latest->url;
+        // credit: https://stackoverflow.com/a/20431742
+        $xml = simplexml_load_string($contents, "SimpleXMLElement", LIBXML_NOCDATA);
+        $json = json_encode($xml);
+        $feed = json_decode($json, TRUE);
+        $latest = $feed["channel"]["item"][0];
+        $this->details['blogTitle'] = $latest["title"];
+        $this->details['blogExcerpt'] = $latest["description"];
+        $this->details['blogUrl'] = $latest["link"];
     }
 
     private function get_data($url) {
