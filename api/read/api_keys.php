@@ -34,6 +34,14 @@ class ApiKeys {
     public function getAshtonRestAuthCreds() {
         $yaml = yaml_parse(file_get_contents($this->path_to_private_dir . '/application-passwords.yml'));
         // array(1) { ["Username"] => "Password" }
+        if (!function_exists('array_key_first')) { // only available in PHP 7.3.0+
+            function array_key_first(array $arr) {
+                foreach($arr as $key => $unused) {
+                    return $key;
+                }
+                return NULL;
+            }
+        }
         return array_key_first($yaml) . ":" . $yaml[array_key_first($yaml)];
     }
 
