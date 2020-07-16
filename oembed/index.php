@@ -17,9 +17,14 @@ if ($_GET['url']) {
     else if ($url === 'https://api.ashton.codes/card/instagram') {
         $template = $twig->load('instagram.html');
         $instagramPostUrl = json_decode(file_get_contents('https://api.ashton.codes/get/social/instagramPost/?key=' . $key . '&format=json'))->instagramPost;
-        echo $template->render(array(
-            'instagramPost' => $instagramPostUrl . 'embed'
-        ));
+        if ($instagramPostUrl) {
+            echo $template->render(array(
+                'instagramPost' => $instagramPostUrl . 'embed'
+            ));
+        }
+        else {
+            echo "Error fetching Instagram feed.";
+        }
     }
     else {
         echo "Card not found";

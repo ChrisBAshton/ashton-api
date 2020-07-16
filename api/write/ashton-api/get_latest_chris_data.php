@@ -48,11 +48,12 @@ class LatestChrisData {
     }
 
     private function getInstagramLink() {
-        // access token generated using client-side (implicit) auth: https://www.instagram.com/developer/authentication/
-        $authenticatedUrl = 'https://api.instagram.com/v1/users/552326513/media/recent/?access_token=' . $this->keys->getInstagramToken();
+        // access token generated using Instagram Basic Display
+        // https://developers.facebook.com/apps/392641964127337/instagram-basic-display/basic-display/
+        $authenticatedUrl = 'https://graph.instagram.com/me/media?fields=id,caption,media_url,permalink&access_token=' . $this->keys->getInstagramToken();
         $contents = $this->get_data($authenticatedUrl);
         $feed = json_decode($contents);
-        return $feed->data[0]->link;
+        return $feed->data[0]->permalink;
     }
 
     private function getDetails() {
